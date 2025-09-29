@@ -1,3 +1,6 @@
+'''
+on importe les variables
+'''
 #### Imports et définition des variables globales
 
 # Mandatory for the recursive solution to work on large inputs
@@ -9,43 +12,44 @@ sys.setrecursionlimit(2000)
 
 
 def artcode_i(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme itératif
-
-    Args:
-        s (str): la chaîne de caractères à encoder
-
-    Returns:
-        list: la liste des tuples (caractère, nombre d'occurences)
-    """
-    
-    # votre code ici
-
-    return [ ]
-
+    '''
+    on commence par la fonction itérative
+    '''
+    l=[]
+    c=1
+    for i in range(1,len(s)):
+        if s[i]==s[i-1]:
+            c+=1
+        else:
+            l.append((s[i-1],c))
+            c=1
+    l.append((s[-1],c))
+    return l
 
 def artcode_r(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme récursif
-
-    Args:
-        s (str): la chaîne de caractères à encoder
-
-    Returns:
-        list: la liste des tuples (caractère, nombre d'occurences)
-    """
-    
-    # votre code ici
-
-    # cas de base
-    # recherche nombre de caractères identiques au premier
-    # appel récursif
-
-    return []
-    
+    '''
+    on fait la fonction récursive
+    '''
+    if not s:
+        return []
+    result=[]
+    c=1
+    for i in range(1,len(s)):
+        if s[i]==s[i-1]:
+            c+=1
+        else:
+            result.append((s[i-1],c))
+            c=1
+    result.append((s[-1],c))
+    return result
 
 #### Fonction principale
 
 
 def main():
+    '''
+    on print les deux fonctions secondaires
+    '''
     print(artcode_i('MMMMaaacXolloMM'))
     print(artcode_r('MMMMaaacXolloMM'))
 
